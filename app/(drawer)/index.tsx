@@ -7,9 +7,8 @@ import React, {
 } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { Marker as Markertest, Region } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
-import ClusteredMapView from "react-native-map-clustering";
+import MapView from "react-native-map-clustering";
 import { Ionicons } from "@expo/vector-icons";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { RootState } from "../../redux/store";
@@ -21,6 +20,7 @@ import { Marker } from "../../types";
 import CustomMarker from "../../components/CustomMarker";
 import OfflineAlert from "../../components/OfflineAlert";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { Region } from "react-native-maps";
 export type RootParamList = {
   Map: undefined;
   Settings: undefined;
@@ -81,14 +81,14 @@ export default function MapScreen() {
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.container}>
         {isOffline && <OfflineAlert />}
-        <ClusteredMapView
+        <MapView
           style={styles.map}
           initialRegion={region}
-          clusterColor={"#000"}
-          clusterTextColor={"#fff"}
+          // clusterColor={"#000"}
+          // clusterTextColor={"#fff"}
           //   clusteringEnabled={true}
           //   spiralEnabled={true}
-          radius={50}
+          // radius={50}
           //   extent={700}
           //   minZoom={1}
           //   maxZoom={20}
@@ -99,16 +99,7 @@ export default function MapScreen() {
           //   onTouchStart={() => popupRef.current?.hide()}
         >
           {visibleMarkers.map(renderMarker)}
-          {/* <Markertest coordinate={{ latitude: 52.4, longitude: 18.7 }} />
-          <Markertest coordinate={{ latitude: 52.1, longitude: 18.4 }} />
-          <Markertest coordinate={{ latitude: 52.6, longitude: 18.3 }} />
-          <Markertest coordinate={{ latitude: 51.6, longitude: 18.0 }} />
-          <Markertest coordinate={{ latitude: 53.1, longitude: 18.8 }} />
-          <Markertest coordinate={{ latitude: 52.9, longitude: 19.4 }} />
-          <Markertest coordinate={{ latitude: 52.2, longitude: 21 }} />
-          <Markertest coordinate={{ latitude: 52.4, longitude: 21 }} />
-          <Markertest coordinate={{ latitude: 51.8, longitude: 20 }} /> */}
-        </ClusteredMapView>
+        </MapView>
         <MarkerPopup ref={popupRef} onClose={() => popupRef.current?.hide()} />
         <View style={styles.header}>
           <TouchableOpacity
