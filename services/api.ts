@@ -1,7 +1,8 @@
 import { Marker } from "../types";
 
-const API_URL = "http://10.131.78.64:3000/pins";
-// const API_URL = "http://192.168.1.12:3000/pins";
+const API_URL = "http://localhost:3000/pins";
+// android needs to be on the machine IP in order to not fail network calls
+// const API_URL = "http://10.131.78.64:3000/pins";
 
 export const fetchMarkersFromAPI = async (): Promise<Marker[]> => {
   try {
